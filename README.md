@@ -29,7 +29,7 @@ NJAU开机自动连接中国移动校园网
 > 4.每次检测时间为9s左右，共检测5次，一般来说第一次就可以成功，后面的没啥用，如果第一次失败后面的也不太可能成功😁
 
 ## 使用教程2.0
-### 1.下载login.py文件，并安装request库
+### 1.下载login2.0.py文件，并安装request库
 ### 2.先手动进一次登录页面，抓取自己的请求参数
 ![image](https://github.com/Elysia32/NJAU-CMCC-EDU-Auto-Connection/blob/main/param.png)
 在登录页面按F12打开开发者工具，点击网络，F5刷新，找到带有ParamStr字样的数据包，转到响应页，根据里面的内容修改py文件的"xxx"（引号不要删)，包括pwdType，UserName和PassWord，其他参数不用改
