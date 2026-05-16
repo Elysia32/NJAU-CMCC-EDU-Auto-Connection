@@ -18,15 +18,34 @@ NJAU开机自动连接中国移动校园网
 "PassWord": "xxx",
 ### 2.用request库模仿数据包直接发送
 一开始的"isCookie"参数依照原请求包中填的False一直不通过，借助AI分析后改成True才可以（具体原因未知😰，可能要保存登录信息才行）
+### 3. 1.0版本遇到的问题
+第一版的paramstr参数是直接获取的，但第二天我发现参数变了，我又抓了几次包发现这个是随机生成的，生成方法如下（个人猜测：
+> 1.先通过登录页网址+ip参数获取第一个paramstr，即脚本中的init_response参数  
+> 2.再通过请求http://wlan.jsyd139.com/style/default_szlan/index.jsp?paramStr=xxx的形式，把第一个paramstr放到后面然后获取真正的paramstr
+### 4.相较于第一版的改进
+> 1.动态获取paramstr  
+> 2.利用try-except隐藏了超时报错（登录成功之后原请求会卡死，直到timeout，这边直接隐藏  
+> 3.摒弃了超时检测，改为网络状态检测，通过get百度的网址来获得状态  
+> 4.每次检测时间为9s左右，共检测5次，一般来说第一次就可以成功，后面的没啥用，如果第一次失败后面的也不太可能成功😁
 
-## 使用教程
+## 使用教程2.0
+### 1.下载login.py文件，并安装request库
+### 2.先手动进一次登录页面，抓取自己的请求参数
+![image](https://github.com/Elysia32/NJAU-CMCC-EDU-Auto-Connection/blob/main/param.png)
+在登录页面按F12打开开发者工具，点击网络，F5刷新，找到带有ParamStr字样的数据包，转到响应页，根据里面的内容修改py文件的"xxx"（引号不要删)，包括pwdType，UserName和PassWord，其他参数不用改
+### 3.把登录页的地址复制到init_response的xxx中（抓取paramstr）
+### 3.先在有网的情况下测试一下有无“登录成功”的return，有的话一般就没问题
+### 4.设置开机自启
+Win+R调出运行，输入" shell:common startup "打开启动文件夹，把修改好的login.py文件拖入即可（记得把py文件默认打开方式改为python)
+
+## 使用教程1.0
 ### 1.下载login.py文件，并安装request库
 ### 2.先手动进一次登录页面，抓取自己的请求参数
 ![image](https://github.com/Elysia32/NJAU-CMCC-EDU-Auto-Connection/blob/main/param.png)
 在登录页面按F12打开开发者工具，点击网络，F5刷新，找到带有ParamStr字样的数据包，转到响应页，根据里面的内容修改py文件的"xxx"（引号不要删)，包括ParamStr，pwdType，UserName和PassWord，其他参数不用改
 ### 3.先在有网的情况下测试一下有无“登录成功”的return，有的话一般就没问题
 ### 4.设置开机自启
-Win+R调出运行，输入" shell:common startup "打开启动文件夹，把修改好的login.py文件拖入即可（记得把py文件默认打开方式改为python)
+Win+R调出运行，输入" shell:common startup "打开启动文件夹，把修改好的login.py文件拖入即可（记得把py文件默认打开方式改为python)  
 
 ## 其实还有一种方法，设置一个自动任务，通过拨号的方式连接CMCC
 ### 1.去拨号界面新建一个拨号 用户名填手机号，密码就是密码，名字随便起
