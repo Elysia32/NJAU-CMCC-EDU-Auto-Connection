@@ -21,7 +21,7 @@ NJAU开机自动连接中国移动校园网
 ### 3. 1.0版本遇到的问题
 第一版的paramstr参数是直接获取的，但第二天我发现参数变了，我又抓了几次包发现这个是随机生成的，生成方法如下（个人猜测：
 > 1.先通过登录页网址+ip参数获取第一个paramstr，即脚本中的init_response参数  
-> 2.再通过请求http://wlan.jsyd139.com/style/default_szlan/index.jsp?paramStr=xxx的形式，把第一个paramstr放到后面然后获取真正的paramstr
+> 2.再通过请求 "http://wlan.jsyd139.com/style/default_szlan/index.jsp?paramStr=xxx" ，把第一个paramstr放到后面然后获取真正的paramstr
 ### 4.相较于第一版的改进
 > 1.动态获取paramstr  
 > 2.利用try-except隐藏了超时报错（登录成功之后原请求会卡死，直到timeout，这边直接隐藏  
