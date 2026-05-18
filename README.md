@@ -6,7 +6,7 @@ NJAU开机自动连接中国移动校园网
 ## 使用教程
 1.下载auto_login_browser 3.0.py，安装selenium库  
 2.配置py文件里的用户名和密码，即手机号和宽带密码  
-3.进 https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/ 下载对应版本的浏览器驱动（浏览器更新之后，不知道不同版本的driver能不能用）  
+3.进 https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/ 下载对应版本的浏览器驱动（浏览器更新之后，不知道不同版本的driver能不能用），查看当前edge版本：右上角···->帮助和反馈->关于MS EDGE
 4.解压驱动，把msedgedriver.exe绝对路径放到57行的service参数中  
 5.设置开机自启  
 ## 开机自启：
