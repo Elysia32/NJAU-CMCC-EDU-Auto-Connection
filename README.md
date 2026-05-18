@@ -12,7 +12,9 @@ NJAU开机自动连接中国移动校园网
 ## 开机自启：
 创建一个bat文件（直接放py文件有概率不运行，可能是计算机不知道启动方式？），内容为  
 > @echo off  
-python "xxx"  
+python "xxx"
+（xxx为绝对路径）  
+Win+R调出运行，输入" shell:common startup "打开启动文件夹，把bat文件放入即可  
 ## 2.0增加了页面元素检测，防止网速慢未加载出页面就提前加载指令  
 ## 3.0修复以下内容：
 1.一开始从菜鸟编程看到“从 Selenium 4 开始，在浏览器驱动的管理方式上发生了变化：Selenium 4 尝试自动检测系统中安装的浏览器版本，并下载相应的驱动程序，这意味着用户不再需要手动下载和设置驱动程序路径，除非他们需要特定版本的驱动程序。”，直接用的driver = webdriver.Edge()获取，结果有以下报错  
@@ -20,8 +22,6 @@ python "xxx"
 > 2.每天url里面的wlanuserip参数会变（真阴），所以改为http://www.msftconnecttest.com/redirect  直接重定向进登录页  
 
 
-（xxx为绝对路径）  
-Win+R调出运行，输入" shell:common startup "打开启动文件夹，把bat文件放入即可  
 
 # 以下内容为request库的一顿暴改，没怎么学网络这块，拼尽全力无法战胜，当个乐子看
 ## 前言
