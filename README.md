@@ -1,19 +1,21 @@
 # NJAU/NAU CMCC-EDU-Auto-Connection
 NJAU开机自动连接中国移动校园网  
 ！！！**仅用于个人学习，所有操作也仅是简化登录过程，并无其他不良影响**！！！
-## 经历多次失败后，用cc写了一个selenium脚本，直接模拟用户操作
+## 用request库经历多次失败后，改用selenium库
 😭😭😭力竭了，搞不明白ParamStr参数的生成，经过多次观察，这个参数有时候会变，有时候不会变，我的2.0脚本get到的参数有时候跟抓到的参数也不一样，没招了  
-只能说AI牛逼，一开始请求不通直接调用selenium库，认证过程一气呵成  
-只需要下载auto_login_browser2.0.py就可以了，改一下里面的用户名，密码和url就可以用了  
-## 2.0增加了页面元素检测，防止网速慢未加载出页面就提前加载指令
+下载auto_login_browser3.0.py就可以了，只需要改一下里面的用户名，密码，再去下个driver
+## 2.0增加了页面元素检测，防止网速慢未加载出页面就提前加载指令  
+## 3.0修复以下内容：
+> 1.一开始从菜鸟编程看到“从 Selenium 4 开始，在浏览器驱动的管理方式上发生了变化：Selenium 4 尝试自动检测系统中安装的浏览器版本，并下载相应的驱动程序，这意味着用户不再需要手动下载和设置驱动程序路径，除非他们需要特定版本的驱动程序。”，直接用的driver = webdriver.Edge()获取，结果有以下报错“There was an error managing msedgedriver (error sending request for url (https://msedgedriver.microsoft.com/LATEST_RELEASE_148_WINDOWS)); using driver found in the cache”，后面仔细一想，没有网怎么自动检测并下载。。。于是改为手动下载driver
 ## 开机自启：
 创建一个bat文件（直接放py文件有概率不运行，可能是计算机不知道启动方式？），内容为  
 > @echo off  
 python "xxx"  
 
 （xxx为绝对路径）  
-Win+R调出运行，输入" shell:common startup "打开启动文件夹，把bat文件放入即可
-# 以下内容为自己的探索历程，拼尽全力无法战胜，当个乐子看
+Win+R调出运行，输入" shell:common startup "打开启动文件夹，把bat文件放入即可  
+
+# 以下内容为request库的一顿暴改，没怎么学网络这块，拼尽全力无法战胜，当个乐子看
 ## 前言
 电脑每次开机都需要从浏览器登录CMCC-EDU校园网，过程繁琐，遂写此登录脚本
 
